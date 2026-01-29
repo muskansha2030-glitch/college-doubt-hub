@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Detected Result</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  background: #ffffff;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.box {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+h2 {
+  color: #0f9d58;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 8px;
+}
+
+.teacher {
+  margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+<div class="box">
+  <h2>AI + Manual Detection</h2>
+  <p id="aiStatus" style="color:#0f9d58;">
+  🤖 AI is analyzing your doubt...
+</p>
+
+  <p><b>Department</b></p>
+  <select id = "department">
+    <option>Computer Science</option>
+    <option>Mechanical</option>
+    <option>Electrical</option>
+    <option>Physics</option>
+  </select>
+
+  <p><b>Subject</b></p>
+<select id="subject">
+  <option value="Computer Programming">Computer Programming</option>
+  <option value="Data Structures">Data Structures</option>
+  <option value="Mathematics">Mathematics</option>
+  <option value="Physics">Physics</option>
+</select>
+
+
+  <h3>Recommended Teachers</h3>
+
+  <div class="teacher">
+    <input type="checkbox"class="t" value="Mr. Sharma"> Mr. Sharma  
+  </div>
+  <div class="teacher">
+    <input type="checkbox"class="t" value="Mr. Sharma"> Ms. Gupta  
+  </div>
+  <div class="teacher">
+    <input type="checkbox"class="t" value="Mr. Sharma"> Dr. Verma  
+  </div>
+  <div class="teacher">
+    <input type="checkbox"class="t" value="Mr. Sharma"> Prof. Mehta  
+  </div>
+  <div class="teacher">
+    <input type="checkbox"class="t" value="Mr. Sharma"> Mr. Rajesh  
+  </div>
+
+  <button onclick="submitAssign()" style="margin-top:20px;background:#0f9d58;color:white;padding:12px;border:none;border-radius:10px;width:100%">
+    Submit & Assign
+  </button>
+</div>
+<script>
+  // fake AI detection
+  setTimeout(() => {
+    document.getElementById("aiStatus").innerText =
+      "✅ AI detected: Computer Science → Computer Programming";
+  }, 1200);
+
+  function submitAssign() {
+    const dept = document.getElementById("department").value;
+    const sub = document.getElementById("subject").value;
+
+    const teachers = Array.from(
+      document.querySelectorAll(".t:checked")
+    ).map(t => t.value);
+
+    if (teachers.length === 0) {
+      alert("Please select at least one teacher");
+      return;
+    }
+
+    alert(
+      "Department: " + dept +
+      "\nSubject: " + sub +
+      "\nAssigned to: " + teachers.join(", ")
+    );
+  }
+</script>
+</body>
+</html>
