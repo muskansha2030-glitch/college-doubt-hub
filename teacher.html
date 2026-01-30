@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Teacher Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: #f4fff9;
+  padding: 20px;
+}
+
+/* Container */
+.container {
+  max-width: 700px;
+  margin: auto;
+  background: white;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+}
+
+/* Headings */
+h2 {
+  color: #1b5e20;
+  margin-bottom: 10px;
+}
+
+h3 {
+  margin-top: 30px;
+  color: #0f9d58;
+}
+
+/* Question Box */
+.question-box {
+  background: #e8f5e9;
+  padding: 18px;
+  border-radius: 12px;
+  margin-top: 15px;
+}
+
+.question-box p {
+  font-size: 15px;
+  color: #333;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 12px;
+  background: #2e7d32;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+/* Answer Sections */
+.answer-section {
+  background: #f9fff9;
+  padding: 20px;
+  border-radius: 14px;
+  margin-top: 15px;
+  border: 1px solid #c8e6c9;
+}
+
+textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+input[type=file] {
+  margin-top: 10px;
+}
+
+button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  background: #0f9d58;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #1b5e20;
+  transform: scale(1.02);
+}
+
+.note {
+  font-size: 13px;
+  color: #666;
+  margin-top: 8px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h2>👨‍🏫 Teacher Dashboard</h2>
+  <p>Answer student doubts anonymously</p>
+
+  <!-- Student Question -->
+  <div class="question-box">
+    <span class="badge">Anonymous Student</span>
+    <p>
+      What is the difference between RAM and ROM?
+    </p>
+  </div>
+
+  <!-- TEXT ANSWER -->
+  <h3>📝 Answer with Text</h3>
+  <div class="answer-section">
+    <textarea placeholder="Type your explanation here..."></textarea>
+    <button onclick="submitAnswer('Text')">
+      Submit Text Answer
+    </button>
+  </div>
+
+  <!-- AUDIO ANSWER -->
+  <h3>🎧 Answer with Audio</h3>
+  <div class="answer-section">
+    <input type="file" accept="audio/*" />
+    <p class="note">Upload a short voice explanation</p>
+    <button onclick="submitAnswer('Audio')">
+      Submit Audio Answer
+    </button>
+  </div>
+
+  <!-- PDF ANSWER -->
+  <h3>📄 Answer with PDF</h3>
+  <div class="answer-section">
+    <input type="file" accept="application/pdf" />
+    <p class="note">Upload notes or handwritten explanation</p>
+    <button onclick="submitAnswer('PDF')">
+      Submit PDF Answer
+    </button>
+  </div>
+
+</div>
+
+<script>
+function submitAnswer(type) {
+  alert("✅ " + type + " answer submitted successfully!\n(Frontend demo only)");
+}
+</script>
+
+</body>
+</html>
