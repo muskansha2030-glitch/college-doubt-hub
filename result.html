@@ -102,12 +102,16 @@ select {
       return;
     }
 
-    alert(
-      "Department: " + dept +
-      "\nSubject: " + sub +
-      "\nAssigned to: " + teachers.join(", ")
-    );
+    // ✅ STORE DATA (this is the missing link)
+    localStorage.setItem("department", dept);
+    localStorage.setItem("subject", sub);
+    localStorage.setItem("teachers", JSON.stringify(teachers));
+
+    // ✅ MOVE TO TEACHER PAGE
+window.location.href = "teacher.html";
+
   }
 </script>
+
 </body>
 </html>

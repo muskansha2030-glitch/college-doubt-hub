@@ -1,56 +1,71 @@
-<h3 style="color:#1b5e20; margin-bottom:15px;">
-  👨‍🏫 Teacher Responses
-</h3>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Student View</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- TEXT ANSWER -->
-<div class="answer">
-  <h4>Mr. Sharma</h4>
-  <small>Department: Computer Science • Text Reply</small>
-  <p>
-    RAM is temporary memory used for active processes,
-    while ROM stores permanent instructions required to start the computer.
-  </p>
+<style>
+body {
+  background: #f4fff9;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.container {
+  max-width: 700px;
+  margin: 50px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+
+h2 {
+  color: #0f9d58;
+}
+
+.answer-box {
+  margin-top: 20px;
+  padding: 20px;
+  background: #e8f5e9;
+  border-radius: 12px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h2>📚 Teacher Answer</h2>
+
+  <div id="answerArea" class="answer-box">
+    Loading answer...
+  </div>
 </div>
 
-<!-- AUDIO ANSWER -->
-<div class="answer">
-  <h4>Ms. Gupta</h4>
-  <small>Department: Computer Science • Audio Reply</small>
+<script>
+  // ✅ GET ANSWER FROM TEACHER PAGE
+  const answer = JSON.parse(localStorage.getItem("teacherAnswer"));
+  const box = document.getElementById("answerArea");
 
-  <p style="margin-top:10px;">
-    🎧 Listen to explanation:
-  </p>
+  if (!answer) {
+    box.innerHTML = "❌ No answer submitted yet.";
+  } else if (answer.type === "Text") {
+    box.innerHTML = `<p>${answer.content}</p>`;
+  } else if (answer.type === "Audio") {
+    box.innerHTML = `
+      <p>🎧 Audio Answer</p>
+      <audio controls>
+        <source src="${answer.content}">
+      </audio>
+    `;
+  } else if (answer.type === "PDF") {
+    box.innerHTML = `
+      <p>📄 PDF Answer</p>
+      <a href="${answer.content}" download>Download PDF</a>
+    `;
+  }
+</script>
 
-  <audio controls style="width:100%; margin-top:8px;">
-    <source src="sample-audio.mp3" type="audio/mpeg">
-    Your browser does not support audio.
-  </audio>
-
-  <p style="font-size:13px;color:#666;margin-top:6px;">
-    (Demo audio – teacher explains RAM vs ROM verbally)
-  </p>
-</div>
-
-<!-- PDF ANSWER -->
-<div class="answer">
-  <h4>Dr. Verma</h4>
-  <small>Department: Electronics • PDF Notes</small>
-
-  <p style="margin-top:10px;">
-    📄 Attached explanation notes:
-  </p>
-
-  <a href="ram-vs-rom.pdf" target="_blank"
-     style="
-       display:inline-block;
-       margin-top:8px;
-       padding:10px 14px;
-       background:#0f9d58;
-       color:white;
-       border-radius:8px;
-       text-decoration:none;
-       font-size:14px;
-     ">
-    Download PDF
-  </a>
-</div>
+</body>
+</html>

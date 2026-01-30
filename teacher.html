@@ -158,9 +158,44 @@ button:hover {
 
 <script>
 function submitAnswer(type) {
-  alert("✅ " + type + " answer submitted successfully!\n(Frontend demo only)");
+  let content = "";
+
+  if (type === "Text") {
+    content = document.querySelector("textarea").value;
+    if (!content.trim()) {
+      alert("Please write an answer");
+      return;
+    }
+  }
+
+  if (type === "Audio" || type === "PDF") {
+    const fileInput = event.target
+      .closest(".answer-section")
+      .querySelector("input");
+
+    if (!fileInput.files.length) {
+      alert("Please upload a file");
+      return;
+    }
+
+    // fake file URL (frontend demo)
+    content = URL.createObjectURL(fileInput.files[0]);
+  }
+
+  // ✅ SAVE ANSWER
+  localStorage.setItem(
+    "teacherAnswer",
+    JSON.stringify({
+      type: type,
+      content: content
+    })
+  );
+
+  // ✅ MOVE TO STUDENT PAGE
+  window.location.href = "student.html";
 }
 </script>
+
 
 </body>
 </html>
